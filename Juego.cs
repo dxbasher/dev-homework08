@@ -17,11 +17,11 @@ namespace dev_homework08{
             Console.Clear();
             Console.WriteLine("Bienvenido a mis pininos");
             _tamañoX  = 50;
-            _tamañoY  = 25;
+            _tamañoY  = 20;
             Console.WriteLine($"Voy a dibunar el tablero de {_tamañoX} {_tamañoY}");
             Thread.Sleep(2000);
             Console.Clear();
-            DibujaTablero(80,40);
+            DibujaTablero();
        
             
            
@@ -38,21 +38,34 @@ namespace dev_homework08{
         }
 
         public void EscribeEn(string texto, int x, int y){
-            Thread.Sleep(5);
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Thread.Sleep(1);
             Console.SetCursorPosition(x,y);
             Console.Write(texto);
         }
 
-        public void DibujaTablero (int tamX, int tamY){
-            for(int x=0; x < tamX; x++ ){
-                EscribeEn("=",x,0);
-                EscribeEn("=",x,tamY-1);
+        public void DibujaTablero (){
+                         string titulo = "Mi Sanake v0,1";
+           
+           for(int x=0; x < _tamañoX; x ++){
+                    for(int y=0; y < _tamañoY; y ++){
+                        EscribeEn(" ",x,y);
+                    }
+            }
+           
+           EscribeEn(titulo,(_tamañoX/2)- (titulo.Length/2) ,0);
+            for(int x=0; x < _tamañoX; x++ ){
+                EscribeEn("=",x,1);
+                EscribeEn("=",x,_tamañoY-1);
             }
 
-            for(int y=0; y < tamY; y ++){
+            for(int y=0; y < _tamañoY; y ++){
                     EscribeEn("|",0,y);
-                    EscribeEn("|",tamX-1,y);
+                    EscribeEn("|",_tamañoX-1,y);
             }
+   
+            
 
         }
 
