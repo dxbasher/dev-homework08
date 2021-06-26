@@ -49,7 +49,7 @@ namespace dev_homework08
             Comer();
             PintarSnake();
             _x = 3;
-            _velociad = 600;
+            _velociad = 300;
            
            
            
