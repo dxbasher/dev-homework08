@@ -9,8 +9,8 @@ namespace dev_homework08
         {
             Console.WriteLine("Hello World!");
             
-            Juego snake = new Juego();
-            snake.Iniciar();
+            Juego game = new Juego();
+            game.Iniciar();
 
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Red;
@@ -23,7 +23,7 @@ namespace dev_homework08
                 Console.WriteLine("\n");
                 Console.WriteLine("Iniciando.");
                 for(int i=0;i<50;i++){
-                    Thread.Sleep(50);
+                    Thread.Sleep(5);
                     Console.Write(".");
                 }
                
@@ -39,32 +39,39 @@ namespace dev_homework08
                         switch(tecla){
                             case ConsoleKey.Escape:
                                 seguir = false;
-                                ImprimirMensaje("\nPresionó Escape. Saliedo");
+                                 game.EscribeMensaje("\nPresionó Escape. Saliedo");
                                 break;
                             case ConsoleKey.UpArrow:
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                ImprimirMensaje("Arriba ⬆️");
+                                game.EscribeMensaje("Arriba ⬆️");
+                                game.snake.Direccion = 'A';
                                 break;
                             case ConsoleKey.DownArrow:
                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                                ImprimirMensaje("Abajo ⬇️");
+                                 game.EscribeMensaje("Abajo ⬇️");
+                                game.snake.Direccion = 'B';
                                 break;
                             case ConsoleKey.LeftArrow:
                             Console.ForegroundColor = ConsoleColor.DarkGray;
-                                ImprimirMensaje("Izquierda  ⬅️ ");
                                 Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                 game.EscribeMensaje("Izquierda  ⬅️ ");
+                                game.snake.Direccion = 'I';
                                 break;
                             case ConsoleKey.RightArrow:
                             Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                ImprimirMensaje("Derecha ➡️");
+                                 game.EscribeMensaje("Derecha ➡️");
+                                game.snake.Direccion = 'D';
                                 break;
                             default:
                             Console.ForegroundColor = ConsoleColor.DarkRed;
-                                ImprimirMensaje(" ** Tecla invalida **  Si quiere salir presione ESC");
+                                 game.EscribeMensaje(" ** Tecla invalida **  Si quiere salir presione ESC");
                                 break;                              
                         }
                         
                     }
+                    
+                   
+                        game.Avanzar();
                 }
 
                 
@@ -76,9 +83,7 @@ namespace dev_homework08
            
            
         }
-        public static void ImprimirMensaje(string msj){
-            Console.WriteLine(msj);    
-        }
+     
 
        
     }

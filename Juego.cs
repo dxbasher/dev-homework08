@@ -14,23 +14,24 @@ namespace dev_homework08
         public int _tamañoX { get; set; }
         public int _tamañoY { get; set; }
 
-        public string _vivora { get; set; }
+        
+        public Snake snake {get;set;}
         public int _velociad { get; set; }
 
         public int _x { get; set; }
         public int _y { get; set; }
 
-         string _caracter = "🐌 ";
+
 
         public Juego()
         {
             
-            _vivora = _caracter;
-            _velociad = 1000;
-            _tamañoX = 50;
-            _tamañoY = 20;
+            _velociad = 500;
+            _tamañoX = 100;
+            _tamañoY = 40;
             _x = (_tamañoX / 2) - 1;
             _y = (_tamañoY / 2) - 1;
+            snake = new Snake(15,'o',2,_y);
         }
 
         public void Iniciar()
@@ -42,34 +43,27 @@ namespace dev_homework08
             Console.WriteLine($"Voy a dibunar el tablero de {_tamañoX} {_tamañoY}, persiona enter para continuar.");
             Console.ReadLine();
             Console.Clear();
-            DibujaTablero();
-
-
-            Comer();
-            Comer();
+            DibujaTablero(); 
             PintarSnake();
-            _x = 3;
-            _velociad = 300;
-           
-           
-           
-            while (_x < (_tamañoX - 2)-(_vivora.Length))
-            {
-                 PintarComida(_x +_vivora.Length, _y);
-                MoverDerecha();
-                MoverDerecha();
-                MoverDerecha();                
-                Comer();
-            }
+            
+        
 
             Console.SetCursorPosition(_tamañoX - 1, _tamañoY - 1);
+        }
+
+        public void Avanzar(){
+             
+            snake.Avanzar(_velociad);
+        }
+
+        public void EscribeMensaje(string mensaje){
+            EscribeEn(mensaje, 2, _tamañoY + 3);            
         }
 
         public void EscribeEn(string texto, int x, int y)
         {
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.ForegroundColor = ConsoleColor.Green;
-            // Thread.Sleep(_velociad);
             Console.SetCursorPosition(x, y);
             Console.Write(texto);
         }
@@ -77,7 +71,8 @@ namespace dev_homework08
         {
             Thread.Sleep(_velociad);
             LimpiarTablero();
-            EscribeEn(_vivora, _x, _y);
+           snake.PintarCuerpo(_velociad);
+           
         }
 
         public void PintarComida(int x , int y)
@@ -91,7 +86,7 @@ namespace dev_homework08
 
         public void Comer()
         {
-            _vivora += _caracter;
+            //_vivora += _caracter;
         }
         public void MoverDerecha()
         {
